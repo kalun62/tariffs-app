@@ -1,6 +1,10 @@
 "use client";
 
 import { useTimer } from "@/hooks/useTimer";
+import Image from "next/image";
+import starYellow from "@/public/images/star-yellow.png";
+import starWhite from "@/public/images/star-white.png";
+import starRed from "@/public/images/star-red.png";
 
 export const HeaderTimer = ({
   onExpire,
@@ -14,24 +18,20 @@ export const HeaderTimer = ({
   const minutes = Math.floor(time / 60).toString().padStart(2, "0");
   const seconds = (time % 60).toString().padStart(2, "0");
 
-  // Выбираем картинку и цвет таймера
-  let starImg = "/images/star-yellow.png";
+  let starImg = starYellow;
   let timerColor = "#FFBB00";
 
   if (time <= 30 && time > 0) {
-    starImg = "/images/star-white.png";
-    timerColor = "#ff4d49"; 
-  }
-
-  if (time === 0) {
-    starImg = "/images/star-red.png";
+    starImg = starWhite;
     timerColor = "#ff4d49";
   }
 
-  // Мигаем последние 30 секунд
-  const pulseClass = time <= 30 && time > 0 ? "animate-pulse" : "";
+  if (time === 0) {
+    starImg = starRed;
+    timerColor = "#ff4d49";
+  }
 
-  // Если таймер подсвечивается ошибкой (кнопка нажата без чекбокса)
+  const pulseClass = time <= 30 && time > 0 ? "animate-pulse" : "";
   const errorClass = highlightError ? "text-red-500 animate-pulse" : "";
 
   return (
@@ -44,9 +44,9 @@ export const HeaderTimer = ({
         className={`flex items-center mt-1 text-2xl font-bold text-[32px] md:text-[40px] ${pulseClass} ${errorClass}`}
         style={{ color: timerColor, transition: "color 0.5s ease-in-out" }}
       >
-        <img src={starImg} alt="звезда" className="w-3 h-3 mr-2" />
+        <Image src={starImg} alt="звезда" width={12} height={12} className="mr-2" />
         {minutes}:{seconds}
-        <img src={starImg} alt="звезда" className="w-3 h-3 ml-2" />
+        <Image src={starImg} alt="звезда" width={12} height={12} className="ml-2" />
       </div>
     </header>
   );

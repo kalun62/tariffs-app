@@ -1,7 +1,11 @@
 "use client";
+
 import { useEffect, useState, useRef} from "react";
 
 import { HeaderTimer } from "@/components/HeaderTimer";
+
+import Image from 'next/image';
+import manImg from '@/public/images/man.png';
 
 import { useTariffs } from "@/hooks/useTariffs";
 import { getDiscount } from "@/utils/getDiscount";
@@ -84,8 +88,8 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:gap-6 gap-1">
             {/* Левая картинка */}
             <div className="w-full md:w-1/3 flex justify-center items-center md:items-start">
-              <img
-                src="/images/man.png"
+              <Image
+                src={manImg}
                 alt="Инфо"
                 className="w-1/2 md:w-full h-auto object-contain"
               />
@@ -308,7 +312,7 @@ export default function Home() {
           {/* Гарантийная плашка */}
           <div className="mt-4 md:mt-8 mb-12 w-full  p-6 rounded-[20px] md:rounded-[30px] border border-[#484D4E] bg-[#232829]">
             {/* Внутренняя плашка с текстом "Гарантия возврата 30 дней" */}
-            <div className="w-full md:w-1/3 mb-2 px-3 py-1 md:px-6 md:py-3 text-center text-[#81FE95] text-[14px] md:text-[26px] font-medium rounded-[30px] border border-[#81FE95] bg-[#2D3233]">
+            <div className="w-full md:w-[40%] mb-2 px-3 py-1 md:py-3 text-center text-[#81FE95] text-[14px] md:text-[26px] font-medium rounded-[30px] border border-[#81FE95] bg-[#2D3233]">
               гарантия возврата 30 дней
             </div>
 
